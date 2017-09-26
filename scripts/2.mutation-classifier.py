@@ -173,10 +173,10 @@ covariate_features = Pipeline([
 # Parameter Sweep for Hyperparameters
 regularization_alpha_list = [10 ** x for x in range(-10, 10)]
 # Chose n_components based on number of positives (or negatives, if that is less)
-n_positives = min(y.sum(),len(y)-y.sum())
-if n_positives > 500:
+min_class_size = min(y.sum(), len(y) - y.sum())
+if min_class_size > 500:
     n_components_list = [100]
-elif n_positives > 250:
+elif min_class_size > 250:
     n_components_list = [50]
 else:
     n_components_list = [30]
